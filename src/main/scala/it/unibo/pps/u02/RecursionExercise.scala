@@ -12,7 +12,15 @@ object RecursionExercise {
     case 0 => curr
     case _ => 0
 
+  def reverse(n: Int): Int =
+    @scala.annotation.tailrec
+    def reverseHelper(remaining: Int, accumulator: Int): Int = remaining match
+      case 0 => accumulator
+      case _ => reverseHelper(remaining / 10, accumulator * 10 + (remaining % 10))
+
+    reverseHelper(n, 0)
+
   @main
   def main: Unit =
-    println(powerTail(10,2, 1))
+    println(reverse(1234))
 }
