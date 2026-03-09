@@ -19,6 +19,16 @@ object Optionals:
       case Just(a) => a
       case _       => orElse
 
+    def mapInt(opt: OptionalInt)(f: Int => Int): OptionalInt = opt match
+      case Empty() => OptionalInt.Empty()
+      case Just(v) => OptionalInt.Just(f(v))
+
+    def filterInt(opt: OptionalInt)(f: Int => Boolean): OptionalInt = opt match
+      case Empty() => OptionalInt.Empty()
+      case Just(v) if f(v) => OptionalInt.Just(v)
+      case _ => Empty()
+
+
 @main def tryOptionals(): Unit =
   import Optionals.* // to work with Optionals (to see OptionalInt type)
   import OptionalInt.* // to directly access algorithms
@@ -26,7 +36,9 @@ object Optionals:
   val s1: OptionalInt = Just(1)
   val s2: OptionalInt = Empty()
 
-  println(s1) // Some(1)
-  println(isEmpty(s1)) // false
-  println(orElse(s1, 0)) // 1
-  println(orElse(s2, 0)) // 0
+//  println(s1) // Some(1)
+//  println(isEmpty(s1)) // false
+//  println(orElse(s1, 0)) // 1
+//  println(orElse(s2, 0)) // 0
+//  println(mapInt(s1)(_ + 1))
+  println(filterInt(Just(5))(_ > 2))
