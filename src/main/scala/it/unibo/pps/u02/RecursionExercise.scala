@@ -7,7 +7,12 @@ object RecursionExercise {
     case 0 => 1
     case _ => 0
 
+  def powerTail(base: Double, exponent: Int, curr: Double): Double = exponent match
+    case n if n > 0 => powerTail(base, exponent - 1, curr * base)
+    case 0 => curr
+    case _ => 0
+
   @main
   def main: Unit =
-    println(power(10,-2))
+    println(powerTail(10,2, 1))
 }
