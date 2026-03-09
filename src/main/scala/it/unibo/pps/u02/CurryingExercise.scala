@@ -12,7 +12,7 @@ object CurryingExercise {
 
   def compose(f: Int => Int, g: Int => Int): Int => Int = (n: Int) => f(g(n))
 
-  @main
+ // @main
   def main: Unit =
     println(compose(_ - 1, _ * 2)(5))
 }
